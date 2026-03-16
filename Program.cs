@@ -38,7 +38,32 @@
 
             #endregion
 
+            #region Part 1 Q3
+            // a) No, we cannot write: Appliance a = new Appliance("LG");
+            //    because Appliance is an abstract class. Abstract classes
+            //    cannot be instantiated directly. They must be inherited
+            //    by another class.
 
+            // b) Difference between the methods:
+
+            // PowerConsumption() → abstract
+            // The method has no implementation in the base class and
+            // must be implemented by all derived classes.
+
+            // Status() → virtual
+            // The method has a default implementation ("Standby"),
+            // but derived classes can override it if they want
+            // different behavior.
+
+            // Label() → concrete
+            // The method is fully implemented in the base class and
+            // normally does not need to be changed by derived classes.
+
+            // c) If we call Status() on a Toaster object, it will return "Standby"
+            //    because Toaster does not override the Status() method,
+            //    so it uses the default implementation from the base class.
+
+            #endregion
         }
     }
 }
