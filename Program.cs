@@ -64,6 +64,55 @@
             //    so it uses the default implementation from the base class.
 
             #endregion
+
+            #region Part 1 Q4
+            // a) A partial class allows a class to be split across multiple files.
+            //    This helps organize large classes and allows multiple developers
+            //    to work on the same class without conflicts.
+
+            // Example (Calculator split into two files):
+            // File 1 => main logic
+            // public partial class Calculator
+
+            // File 2 => logging logic
+            // public partial class Calculator 
+
+
+            // b) A partial method is a method declared in one part of a partial class
+            //    and optionally implemented in another part.
+
+            // If the implementation of OnCalculated( is deleted,
+            // the code will still compile because partial methods are optional.
+            // If no implementation exists, the compiler removes the method call.
+
+
+            // c) An extension method allows adding new methods to an existing type
+            //    without modifying the original class.
+
+            // Three rules for writing an extension method:
+            // 1) The method must be inside a static class.
+            // 2) The method itself must be static.
+            // 3) The first parameter must use the keyword "this" with the type
+            //    that the method extends.
+
+
+            // d) Output:
+
+            // Calculator calc = new Calculator();
+            // double result = calc.Add(19.5, 0.5);
+            // Console.WriteLine(result.ToCurrency());
+
+            // Step 1: Add(19.5 , 0.5) = 20
+            // Step 2: OnCalculated prints => Log: result = 20
+            // Step 3: ToCurrency() formats the number
+
+            // Final output:
+            // Log: result = 20
+            // 20.00
+
+            #endregion
+
+
         }
     }
 }
