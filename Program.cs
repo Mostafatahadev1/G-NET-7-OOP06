@@ -24,6 +24,20 @@
 
             #endregion
 
+            #region Part 1 Q2
+            // Difference between Abstract Class and Interface:
+
+            // 1) Abstract class can have implemented methods, but interface usually has only method signatures.
+            // 2) Abstract class can have fields and constructors, interface cannot.
+            // 3) A class can inherit from one abstract class only, but it can implement multiple interfaces.
+            // 4) Abstract class members can use different access modifiers, interface members are public by default.
+
+            // When to use:
+            // Use an abstract class when classes share common code.
+            // Use an interface when different classes need the same contract but different implementations.
+
+            #endregion
+
 
         }
     }
