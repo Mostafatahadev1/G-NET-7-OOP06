@@ -4,7 +4,157 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            #region Part 1 Q1
+            // Abstraction in OOP means hiding complex implementation details
+            // and showing only the essential features of an object to the user.
+
+            // Encapsulation means wrapping data and methods inside a class
+            // and restricting direct access to the data using access modifiers
+            // like private and public.
+
+            // Difference:
+            // Abstraction focuses on hiding complexity and showing what an object does.
+            // Encapsulation focuses on protecting data and controlling access to it.
+
+            // Real-world example:
+            // A car driver uses the steering wheel, brake, and accelerator
+            // without knowing how the engine works (Abstraction).
+            // The engine components are hidden and protected inside the engine system
+            // and cannot be accessed directly (Encapsulation).
+
+            #endregion
+
+            #region Part 1 Q2
+            // Difference between Abstract Class and Interface:
+
+            // 1) Abstract class can have implemented methods, but interface usually has only method signatures.
+            // 2) Abstract class can have fields and constructors, interface cannot.
+            // 3) A class can inherit from one abstract class only, but it can implement multiple interfaces.
+            // 4) Abstract class members can use different access modifiers, interface members are public by default.
+
+            // When to use:
+            // Use an abstract class when classes share common code.
+            // Use an interface when different classes need the same contract but different implementations.
+
+            #endregion
+
+            #region Part 1 Q3
+            // a) No, we cannot write: Appliance a = new Appliance("LG");
+            //    because Appliance is an abstract class. Abstract classes
+            //    cannot be instantiated directly. They must be inherited
+            //    by another class.
+
+            // b) Difference between the methods:
+
+            // PowerConsumption() → abstract
+            // The method has no implementation in the base class and
+            // must be implemented by all derived classes.
+
+            // Status() → virtual
+            // The method has a default implementation ("Standby"),
+            // but derived classes can override it if they want
+            // different behavior.
+
+            // Label() → concrete
+            // The method is fully implemented in the base class and
+            // normally does not need to be changed by derived classes.
+
+            // c) If we call Status() on a Toaster object, it will return "Standby"
+            //    because Toaster does not override the Status() method,
+            //    so it uses the default implementation from the base class.
+
+            #endregion
+
+            #region Part 1 Q4
+            // a) A partial class allows a class to be split across multiple files.
+            //    This helps organize large classes and allows multiple developers
+            //    to work on the same class without conflicts.
+
+            // Example (Calculator split into two files):
+            // File 1 => main logic
+            // public partial class Calculator
+
+            // File 2 => logging logic
+            // public partial class Calculator 
+
+
+            // b) A partial method is a method declared in one part of a partial class
+            //    and optionally implemented in another part.
+
+            // If the implementation of OnCalculated( is deleted,
+            // the code will still compile because partial methods are optional.
+            // If no implementation exists, the compiler removes the method call.
+
+
+            // c) An extension method allows adding new methods to an existing type
+            //    without modifying the original class.
+
+            // Three rules for writing an extension method:
+            // 1) The method must be inside a static class.
+            // 2) The method itself must be static.
+            // 3) The first parameter must use the keyword "this" with the type
+            //    that the method extends.
+
+
+            // d) Output:
+
+            // Calculator calc = new Calculator();
+            // double result = calc.Add(19.5, 0.5);
+            // Console.WriteLine(result.ToCurrency());
+
+            // Step 1: Add(19.5 , 0.5) = 20
+            // Step 2: OnCalculated prints => Log: result = 20
+            // Step 3: ToCurrency() formats the number
+
+            // Final output:
+            // Log: result = 20
+            // 20.00
+
+            #endregion
+
+            #region Part 2
+            Cinema cinema = new Cinema();
+
+            cinema.Open();
+
+            // Ticket t = new Ticket("Test",100); // ERROR
+
+            StandardTicket t1 = new StandardTicket("Inception", new Seat('A', 5), 80);
+            VIPTicket t2 = new VIPTicket("Avengers", 200, true, 50);
+            IMAXTicket t3 = new IMAXTicket("Dune", 130, true);
+
+            t1.Book();
+            t2.Book();
+            t3.Book();
+
+            cinema.AddTicket(t1);
+            cinema.AddTicket(t2);
+            cinema.AddTicket(t3);
+
+            cinema.PrintAllTickets();
+
+
+            Console.WriteLine("\n--- Polymorphism: Final Price per Ticket ---");
+
+            Ticket[] arr = { t1, t2, t3 };
+
+            foreach (var t in arr)
+            {
+                Console.WriteLine($"{t.GetType().Name} => Final Price: {t.CalculateFinalPrice():F2}");
+            }
+
+            Console.WriteLine("\n--- Extension Method: Receipt ---");
+
+            Console.WriteLine(t2.GenerateReceipt());
+
+            Console.WriteLine("\n--- Extension Method: Total Revenue ---");
+
+            Console.WriteLine($"Total Revenue: {arr.TotalRevenue():F2}");
+
+            cinema.Close();
+
+
+            #endregion
         }
     }
 }
