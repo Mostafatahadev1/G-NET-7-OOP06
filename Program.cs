@@ -112,7 +112,49 @@
 
             #endregion
 
+            #region Part 2
+            Cinema cinema = new Cinema();
 
+            cinema.Open();
+
+            // Ticket t = new Ticket("Test",100); // ERROR
+
+            StandardTicket t1 = new StandardTicket("Inception", new Seat('A', 5), 80);
+            VIPTicket t2 = new VIPTicket("Avengers", 200, true, 50);
+            IMAXTicket t3 = new IMAXTicket("Dune", 130, true);
+
+            t1.Book();
+            t2.Book();
+            t3.Book();
+
+            cinema.AddTicket(t1);
+            cinema.AddTicket(t2);
+            cinema.AddTicket(t3);
+
+            cinema.PrintAllTickets();
+
+
+            Console.WriteLine("\n--- Polymorphism: Final Price per Ticket ---");
+
+            Ticket[] arr = { t1, t2, t3 };
+
+            foreach (var t in arr)
+            {
+                Console.WriteLine($"{t.GetType().Name} => Final Price: {t.CalculateFinalPrice():F2}");
+            }
+
+            Console.WriteLine("\n--- Extension Method: Receipt ---");
+
+            Console.WriteLine(t2.GenerateReceipt());
+
+            Console.WriteLine("\n--- Extension Method: Total Revenue ---");
+
+            Console.WriteLine($"Total Revenue: {arr.TotalRevenue():F2}");
+
+            cinema.Close();
+
+
+            #endregion
         }
     }
 }
